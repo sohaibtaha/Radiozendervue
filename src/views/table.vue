@@ -3,7 +3,7 @@
   <v-data-table v-if='infoZenders'
     :headers="headersZenders"
     :items="infoZenders"
-    :items-per-page="5"
+    :items-per-page="10"
     class="elevation-1"
   >
   <template v-slot:[`item.actions`]="{ item }">
