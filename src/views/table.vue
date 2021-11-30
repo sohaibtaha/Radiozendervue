@@ -1,8 +1,8 @@
 <template>
 
-  <v-data-table v-if='infoCaravans'
-    :headers="headersCaravans"
-    :items="infoCaravans"
+  <v-data-table v-if='infoZenders'
+    :headers="headersZenders"
+    :items="infoZenders"
     :items-per-page="5"
     class="elevation-1"
   >
@@ -39,31 +39,32 @@ import axios from 'axios'
       mounted () {
     //console.log('testmounted')
     axios
-      .get('http://127.0.0.1:8000/api/caravans')
+      .get('http://127.0.0.1:8000/api/zenders')
       .then((response) => {
         // console.log('response =', response)
-        this.infoCaravans = response.data;
-        console.log("this.infoCaravans=",this.infoCaravans)
+        this.infoZenders = response.data;
+        console.log("this.infoCaravans=",this.infoZenders)
         })
   },
     data () {
       return {
-        infoCaravans: null,
-        headersCaravans: [
+        infoZenders: null,
+        headersZenders: [
           
-          { text: 'Naam', value: 'name' },
+          { text: 'programma', value: 'programma' },
           { text: 'id', value: 'id' },
+          { text: 'tijd', value: 'duurInMinuten' },
           { text: 'Actions', value: 'actions', sortable: false },
         ],
       }
     },
   methods: { 
     deleteItem (item) {
-        this.editedIndex = this.headersCaravans.indexOf(item)
+        this.editedIndex = this.headersZenders.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialogDelete = true
 
-        axios.delete('http://127.0.0.1:8000/api/caravans/' + item.id, {})
+        axios.delete('http://127.0.0.1:8000/api/zenders/' + item.id, {})
       },
     
     save () {
